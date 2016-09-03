@@ -48,7 +48,7 @@ int main()
 							Qnum+=sum*pow(2,num);
 							num++;
 						}
-						printf("%d的八进制数是：%o",hc,Qnum);
+						printf("%dB的八进制数是：%o",hc,Qnum);
 						break;
 					}
 					case 'H':
@@ -64,7 +64,7 @@ int main()
 							Hnum+=sum*pow(2,num);
 							num++;
 						}
-						printf("%d的十进制数是：%x",hc,Hnum);
+						printf("%dB的十六进制数是：%x",hc,Hnum);
 						break;
 					}
 					default:
@@ -87,7 +87,7 @@ int main()
 							num++;
 							Dnum=Dnum/2;
 						}
-						printf("%d的二进制数是：",hc);
+						printf("%dD的二进制数是：",hc);
 						num--;
 						while(num>=0)
 						{
@@ -101,7 +101,7 @@ int main()
 						Dnum=0;
 						printf("请输入一个十进制数：");
 						scanf("%d",&Dnum);
-						printf("%d的八进制是：%o",Dnum,Dnum);
+						printf("%dD的八进制是：%o",Dnum,Dnum);
 						break;
 					}
 					case 'H':
@@ -109,7 +109,7 @@ int main()
 						Dnum=0;
 						printf("请输入一个十进制数：");
 						scanf("%d",&Dnum);
-						printf("%d的十六进制是：%x",Dnum,Dnum);
+						printf("%dD的十六进制是：%x",Dnum,Dnum);
 						break;
 					}
 					default:
@@ -123,7 +123,9 @@ int main()
 				{
 					case 'D':
 					{
-						printf("暂未开放，敬请期待。\n");
+						printf("请输入一个八进制数：");
+						scanf("%o",&Qnum);
+						printf("%oQ的十进制是：%d",Qnum,Qnum);
 						break;
 					}
 					case 'B':
@@ -133,7 +135,9 @@ int main()
 					}
 					case 'H':
 					{
-						printf("暂未开放，敬请期待。\n");
+						printf("请输入一个八进制数：");
+						scanf("%o",&Qnum);
+						printf("%oQ的十六进制是：%x",Qnum,Qnum);
 						break;
 					}
 					default:
@@ -147,12 +151,16 @@ int main()
 				{
 					case 'D':
 					{
-						printf("暂未开放，敬请期待。\n");
+						printf("请输入一个十六进制数：");
+						scanf("%x",&Hnum);
+						printf("%xH的十进制是：%d",Hnum,Hnum);
 						break;
 					}
 					case 'Q':
 					{
-						printf("暂未开放，敬请期待。\n");
+						printf("请输入一个十六进制数：");
+						scanf("%x",&Hnum);
+						printf("%xH的八进制是：%o",Hnum,Hnum);
 						break;
 					}
 					case 'B':
@@ -163,10 +171,10 @@ int main()
 					default:
 						printf("请输入一个正常的数！！！(╯°口°)╯(┴—┴");
 				}
-				default:
-					printf("请输入一个正常的数！！！(╯°口°)╯(┴—┴");
 				break;
 			}
+			default:
+				printf("请输入一个正常的数！！！(╯°口°)╯(┴—┴");
 		}
 		printf("\n如果继续请输入‘y’，结束就输入‘n’。（默认为‘y’）\n");
 		scanf("%1s",&yon);
