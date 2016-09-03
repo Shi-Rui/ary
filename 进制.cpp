@@ -4,7 +4,7 @@ int main()
 {
 	char ch[2];
 	int Bsnum[1024],Dsnum[1024],Qsnum[1024],Hsnum[1024];
-	int Bnum=0,Dnum=0,Qnum=0,Hnum=0,num=0,hc=0;
+	int Bnum=0,Dnum=0,Qnum=0,Hnum=0,num=0,hc=0,sum=0;
 	char yon='y';
 	while(yon=='y')
 	{
@@ -24,16 +24,13 @@ int main()
 						printf("请输入一个二进制数：");
 						scanf("%d",&Bnum);
 						hc=Bnum;
-						while(Bnum>0)
+						for(;Bnum!=0;Bnum/=10)
 						{
-							Bnum/=10;
+							sum=Bnum%10;
+							Dnum+=sum*pow(2,num);
 							num++;
 						}
-						Bnum=hc;
-						while(num>0)
-						{
-							Dnum+=pow(2,num)*(Bnum)
-						}
+						printf("%d的十进制数是：%d",hc,Dnum);
 						break;
 					}
 					case 'Q':
