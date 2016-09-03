@@ -21,6 +21,8 @@ int main()
 				{
 					case 'D':
 					{
+						Dnum=0;
+						num=0;
 						printf("请输入一个二进制数：");
 						scanf("%d",&Bnum);
 						hc=Bnum;
@@ -35,12 +37,34 @@ int main()
 					}
 					case 'Q':
 					{
-						printf("暂未开放，敬请期待。\n");
+						Qnum=0;
+						num=0;
+						printf("请输入一个二进制数：");
+						scanf("%d",&Bnum);
+						hc=Bnum;
+						for(;Bnum!=0;Bnum/=10)
+						{
+							sum=Bnum%10;
+							Qnum+=sum*pow(2,num);
+							num++;
+						}
+						printf("%d的八进制数是：%o",hc,Qnum);
 						break;
 					}
 					case 'H':
 					{
-						printf("暂未开放，敬请期待。\n");
+						Hnum=0;
+						num=0;
+						printf("请输入一个二进制数：");
+						scanf("%d",&Bnum);
+						hc=Bnum;
+						for(;Bnum!=0;Bnum/=10)
+						{
+							sum=Bnum%10;
+							Hnum+=sum*pow(2,num);
+							num++;
+						}
+						printf("%d的十进制数是：%x",hc,Hnum);
 						break;
 					}
 					default:
@@ -74,12 +98,18 @@ int main()
 					}
 					case 'Q':
 					{
-						printf("暂未开放，敬请期待。\n");
+						Dnum=0;
+						printf("请输入一个十进制数：");
+						scanf("%d",&Dnum);
+						printf("%d的八进制是：%o",Dnum,Dnum);
 						break;
 					}
 					case 'H':
 					{
-						printf("暂未开放，敬请期待。\n");
+						Dnum=0;
+						printf("请输入一个十进制数：");
+						scanf("%d",&Dnum);
+						printf("%d的十六进制是：%x",Dnum,Dnum);
 						break;
 					}
 					default:
