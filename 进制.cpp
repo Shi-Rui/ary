@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h> 
+#include <conio.h>
 int main()
 {
 	char ch[2];
@@ -177,8 +178,9 @@ int main()
 			default:
 				printf("请输入一个正常的数！！！(╯°口°)╯(┴—┴");
 		}
-		printf("\n如果继续请输入‘y’，结束就输入‘n’。（默认为‘y’）");
-		scanf("%1s",&yon);
+		printf("\n如果继续请输入‘y’，结束就输入‘n’。");
+		yon=getch();
+		printf("\n");
 	}
 	return 0;
 }
