@@ -20,4 +20,5 @@
   (iter d '()))
 
 (define D (read))
+(newline)
 (display-list (D2B D))
