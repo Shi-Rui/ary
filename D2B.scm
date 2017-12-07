@@ -36,8 +36,8 @@
 (define (D2B d)
   (define (iter d l)
     (if (= (f2i (/ d 2)) 0)
-      (cons (modulo d 2) l)
-      (iter (f2i (/ d 2)) (cons (modulo d 2) l))))
+        (cons (modulo d 2) l)
+        (iter (f2i (/ d 2)) (cons (modulo d 2) l))))
   (iter d '()))
 
 (define (D2* d a)
