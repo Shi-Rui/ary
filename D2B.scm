@@ -12,6 +12,12 @@
         (display (car l))
         (display-list (cdr l)))))
 
+(define (display-all in)
+  (if (list? in)
+      (display-list in)
+      (begin (display in)
+             (newline))))
+
 (define (number2H n)
   (cond [(< n 10) n]
         [(= n 10) "a"]
@@ -20,7 +26,7 @@
         [(= n 13) "d"]
         [(= n 14) "e"]
         [(= n 15) "f"]
-        [else "it's too large."]))
+        [else #f]))
 
 (define (H2number h)
   (cond [(number? h) h]
@@ -31,7 +37,10 @@
         [(or (equal? h "d") (equal? h "D")) 13]
         [(or (equal? h "e") (equal? h "E")) 14]
         [(or (equal? h "f") (equal? h "F")) 15]
-        [else "it's a hex."]))
+        [else #f]))
+
+
+
 
 (define (D2B d)
   (define (iter d l)
@@ -53,6 +62,33 @@
 (define (D2H d)
   (map number2H (D2* d 16)))
 
-(define D (read))
+
+
+(define (low-num n)
+  (f2i (/ n 10)))
+
+(define (get-last-num n)
+  (- n (* 10 (low-num n))))
+
+(define (B2D b)
+  (define (iter b d c)
+    (if (= b 0)
+        d
+        (iter (low-num b) (+ d (* (get-last-num b) (expt 2 c))) (add1 c))))
+  (iter b 0 0))
+
+(define (*2D n a)
+  (define (iter n d c)
+    (if (= n 0)
+        d
+        (iter
+         (low-num n)
+         (+ d (* (get-last-num n) (expt a c)))
+         (add1 c))))
+  (iter n 0 0))
+
+
+
+(define num (read))
 (newline)
-(display-list (D2H D))
+(display-all (*2D num 2))
