@@ -37,8 +37,7 @@
         [(or (equal? h "d") (equal? h "D")) 13]
         [(or (equal? h "e") (equal? h "E")) 14]
         [(or (equal? h "f") (equal? h "F")) 15]
-        [else #f]))
-
+        [else (H2number (string->number h))]))
 
 
 
@@ -65,10 +64,16 @@
 
 
 (define (low-num n)
-  (f2i (/ n 10)))
+  (cond [(number? n) (f2i (/ n 10))]
+        [(string? n) (substring n 0 (sub1 (string-length n)))]
+        [(symbol? n) (low-num (symbol->string n))]
+        [else #f]))
 
 (define (get-last-num n)
-  (- n (* 10 (low-num n))))
+  (cond [(number? n) (- n (* 10 (low-num n)))]
+        [(string? n) (H2number (string (string-ref n (sub1 (string-length n)))))]
+        [(symbol? n) (get-last-num (symbol->string n))]
+        [else #f]))
 
 (define (B2D b)
   (define (iter b d c)
@@ -79,7 +84,7 @@
 
 (define (*2D n a)
   (define (iter n d c)
-    (if (= n 0)
+    (if (or (equal? n 0) (equal? n ""))
         d
         (iter
          (low-num n)
@@ -91,4 +96,4 @@
 
 (define num (read))
 (newline)
-(display-all (*2D num 2))
+(display-all (*2D num 16))
