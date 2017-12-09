@@ -31,6 +31,7 @@
 (define (H2number h)
   (cond [(number? h) h]
         [(symbol? h) (H2number (symbol->string h))]
+        [(equal? h #f) #f]
         [(or (equal? h "a") (equal? h "A")) 10]
         [(or (equal? h "b") (equal? h "B")) 11]
         [(or (equal? h "c") (equal? h "C")) 12]
@@ -75,3 +76,33 @@
         [(= out 10) (*2D num in)]
         [(= in out) num]
         [else (D2* (*2D num in) out)]))
+
+(define (check-num num sys)
+  (cond [(or (equal? num 0) (equal? num "")) #t]
+        [(equal? #f (get-last-num num)) #f]
+        [(symbol? num) (check-num (symbol->string num) sys)]
+        [(< sys (get-last-num num)) #f]
+        [else (check-num (low-num num) sys)]))
+
+(define in 0)
+(define out 0)
+(define num 0)
+(display "请输入你要转化的进制是多少进制的：")
+(set! in (read))
+(display "请输入你要转化成多少进制：")
+(set! out (read))
+(display "请输入你要转化的数：")
+(set! num (read))
+(if (check-num num in)
+    (begin
+      (display num)
+      (display "转成")
+      (display out)
+      (display "进制为：")
+      (display-all (*2* in out num)))
+    (begin
+      (display num)
+      (display "不是一个")
+      (display in)
+      (display "进制的数。")
+      (newline)))
