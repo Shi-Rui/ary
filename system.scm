@@ -38,7 +38,7 @@
         [(or (equal? h "d") (equal? h "D")) 13]
         [(or (equal? h "e") (equal? h "E")) 14]
         [(or (equal? h "f") (equal? h "F")) 15]
-        [else (H2number (string->number h))]))
+        [else (string->number h)]))
 
 (define (low-num n)
   (cond [(number? n) (f2i (/ n 10))]
@@ -81,7 +81,7 @@
   (cond [(or (equal? num 0) (equal? num "")) #t]
         [(equal? #f (get-last-num num)) #f]
         [(symbol? num) (check-num (symbol->string num) sys)]
-        [(< sys (get-last-num num)) #f]
+        [(< (sub1 sys) (get-last-num num)) #f]
         [else (check-num (low-num num) sys)]))
 
 (define in 0)
