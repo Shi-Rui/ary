@@ -78,7 +78,8 @@
         [else (D2* (*2D num in) out)]))
 
 (define (check-num num sys)
-  (cond [(or (equal? num 0) (equal? num "")) #t]
+  (cond [(symbol? sys) #f]
+        [(or (equal? num 0) (equal? num "")) #t]
         [(equal? #f (get-last-num num)) #f]
         [(symbol? num) (check-num (symbol->string num) sys)]
         [(< (sub1 sys) (get-last-num num)) #f]
@@ -87,22 +88,28 @@
 (define in 0)
 (define out 0)
 (define num 0)
-(display "请输入你要转化的进制是多少进制的：")
-(set! in (read))
-(display "请输入你要转化成多少进制：")
-(set! out (read))
-(display "请输入你要转化的数：")
-(set! num (read))
-(if (check-num num in)
-    (begin
-      (display num)
-      (display "转成")
-      (display out)
-      (display "进制为：")
-      (display-all (*2* in out num)))
-    (begin
-      (display num)
-      (display "不是一个")
-      (display in)
-      (display "进制的数。")
-      (newline)))
+(define (do-list)
+  (display "请输入你要转化的进制是多少进制的：")
+  (set! in (read))
+  (display "请输入你要转化成多少进制：")
+  (set! out (read))
+  (display "请输入你要转化的数：")
+  (set! num (read))
+  (if (check-num num in)
+      (begin
+        (display num)
+        (display "转成")
+        (display out)
+        (display "进制为：")
+        (display-all (*2* in out num)))
+      (begin
+        (display num)
+        (display "不是一个")
+        (display in)
+        (display "进制的数。")
+        (newline))))
+(define (cycle c)
+  (begin
+    (do-list)
+    (cycle c)))
+(cycle #t)
