@@ -109,7 +109,15 @@
         (display "进制的数。")
         (newline))))
 (define (cycle c)
-  (begin
-    (do-list)
-    (cycle c)))
+  (if c
+      (begin
+        (do-list)
+        (display "继续（n），重新（r），退出（s）：")
+        (let ((con (read)))
+          (cond [(equal? con 'n) (cycle #t)]
+                [(equal? con 'r) (cycle #t)]
+                [(equal? con 's) #f]
+                [else #f]
+                )))
+      c))
 (cycle #t)
