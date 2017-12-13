@@ -18,6 +18,15 @@
       (begin (display in)
              (newline))))
 
+(define (printf in)
+  (cond [(list? in)
+         (if (null? (cdr in))
+             (display (eval (car in)))
+             (begin
+               (display (eval (car in)))
+               (printf (cdr in))))]
+        [else (display in)]))
+
 (define (number2H n)
   (cond [(< n 10) n]
         [(= n 10) "a"]
@@ -88,7 +97,8 @@
 (define in 0)
 (define out 0)
 (define num 0)
-(define (do-list)
+
+(define (int-list)
   (display "请输入你要转化的进制是多少进制的：")
   (set! in (read))
   (display "请输入你要转化成多少进制：")
@@ -97,27 +107,36 @@
   (set! num (read))
   (if (check-num num in)
       (begin
-        (display num)
-        (display "转成")
-        (display out)
-        (display "进制为：")
+        (printf '(num "转成" out "进制为：" ))
         (display-all (*2* in out num)))
+      (printf '(num "不是一个" in "进制的数。\n"))))
+
+(define (next-list)
+  (display "请输入你要转化的数：")
+  (set! num (read))
+  (if (check-num num in)
       (begin
-        (display num)
-        (display "不是一个")
-        (display in)
-        (display "进制的数。")
-        (newline))))
+        (printf '(num "转成" out "进制为：" ))
+        (display-all (*2* in out num)))
+      (printf '(num "不是一个" in "进制的数。\n"))))
+
 (define (cycle c)
   (if c
       (begin
-        (do-list)
         (display "继续（n），重新（r），退出（s）：")
         (let ((con (read)))
-          (cond [(equal? con 'n) (cycle #t)]
-                [(equal? con 'r) (cycle #t)]
+          (cond [(equal? con 'n)
+                 (begin
+                   (next-list)
+                   (cycle #t))]
+                [(equal? con 'r)
+                 (begin
+                   (int-list)
+                   (cycle #t))]
                 [(equal? con 's) #f]
                 [else #f]
                 )))
       c))
+
+(int-list)
 (cycle #t)
