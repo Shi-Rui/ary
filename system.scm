@@ -99,7 +99,7 @@
 (define num 0)
 
 (define (int-list)
-  (display "请输入你要转化的进制是多少进制的：")
+  (display "请输入你要转化的数多少进制的：")
   (set! in (read))
   (display "请输入你要转化成多少进制：")
   (set! out (read))
